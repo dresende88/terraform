@@ -29,19 +29,19 @@ resource "aws_security_group" "test-sg" {
   vpc_id      = data.aws_vpc.vpc.id
 
   ingress {
-    from_port   = 22
-    to_port     = 22
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
-    description = "officeBF"
-    cidr_blocks = ["10.30.0.0/16", "10.80.0.0/16"]
+    description = "HTTP"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
-    description = "Allow MySQL port"
-    cidr_blocks = ["10.130.0.0/16", "10.110.0.0/16", "10.100.0.0/16"]
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    description = "all"
+    cidr_blocks = ["0.0.0.0/0"]
   }
   }
 
