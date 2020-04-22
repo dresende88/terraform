@@ -6,29 +6,23 @@ terraform {
   }
 }
 
+provider "aws" {
+  region = "us-east-1"
+}
+
 locals {
-  company     = "test"
-  env         = "live"
-  group       = "store"
-  system      = "test"
-  role        = "server"
-  name        = "test-${local.env}-${local.system}-${local.role}"
+  name        = "test-server"
   keyname     = "test"
   size        = "t2.small"
   vol_type_so = "gp2"
   vol_size_so = "10"
   ami_id      = "ami-0fc61db8544a617ed"
-  type = "server"
-}
-
-provider "aws" {
-  region = "us-east-1"
 }
 
 data "aws_vpc" "vpc" {
   filter {
     name   = "tag:Name"
-    values = ["teste"]
+    values = ["test"]
   }
 }
 
@@ -37,7 +31,7 @@ data "aws_subnet_ids" "private" {
 
   filter {
     name   = "tag:Name"
-    values = ["teste"]
+    values = ["test"]
   }
 }
 

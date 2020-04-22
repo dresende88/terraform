@@ -14,18 +14,12 @@ resource "aws_instance" "test" {
 
   tags = {
     Name    = local.name
-    company = local.company
-    env     = local.env
-    group   = local.group
-    role    = local.role
-    system  = local.system
-    type    = local.type
   }
 }
 
 resource "aws_security_group" "test-sg" {
   name        = "test-security-group"
-  description = "Security Group for bastion server DB"
+  description = "Security Group for test server"
   vpc_id      = data.aws_vpc.vpc.id
 
   ingress {

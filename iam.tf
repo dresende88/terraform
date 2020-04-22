@@ -1,5 +1,5 @@
-resource "aws_iam_role" "bastiondb-role" {
-  name = "dft-${local.system}-role"
+resource "aws_iam_role" "test-role" {
+  name = "test-role"
 
   assume_role_policy = <<EOF
 {
@@ -19,23 +19,18 @@ EOF
 
 
   tags = {
-    company = local.company
-    env     = local.env
-    group   = local.group
-    role    = "credential"
-    system  = local.system
-    type    = "service"
+    name = local.name 
   }
 }
 
-resource "aws_iam_instance_profile" "bastiondb_profile" {
-  name = "bastiondb_profile"
-  role = aws_iam_role.bastiondb-role.name
+resource "aws_iam_instance_profile" "test_profile" {
+  name = "test_profile"
+  role = aws_iam_role.test-role.name
 }
 
-resource "aws_iam_role_policy" "bastiondb_policy" {
-  name = "bastiondb_policy"
-  role = aws_iam_role.bastiondb-role.id
+resource "aws_iam_role_policy" "test_policy" {
+  name = "test_policy"
+  role = aws_iam_role.test-role.id
 
   policy = <<EOF
 {
