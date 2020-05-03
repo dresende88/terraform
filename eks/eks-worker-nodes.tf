@@ -8,8 +8,8 @@ resource "aws_eks_node_group" "node_group" {
   node_role_arn   = aws_iam_role.eks_node.arn
   subnet_ids      = aws_subnet.subnet[*].id
   remote_access {
-    ec2_ssh_key = "key"
-    //  source_security_group_ids = ""
+    ec2_ssh_key               = "key"
+    source_security_group_ids = [aws_security_group.eks_node_remoteAccess.id]
   }
   tags = {
     "kubernetes.io/cluster/${var.cluster-name}"     = "owned"
