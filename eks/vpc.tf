@@ -23,8 +23,9 @@ resource "aws_subnet" "subnet" {
   vpc_id                  = aws_vpc.vpc.id
 
   tags = map(
-    "Name", "eks-node",
+    "Name", "eks-public-subnet",
     "kubernetes.io/cluster/${var.cluster-name}", "shared",
+    "kubernetes.io/role/elb", "1",
   )
 }
 

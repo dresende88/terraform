@@ -12,7 +12,9 @@ resource "aws_eks_node_group" "node_group" {
     //  source_security_group_ids = ""
   }
   tags = {
-    "kubernetes.io/cluster/${var.cluster-name}" = "owned"
+    "kubernetes.io/cluster/${var.cluster-name}"     = "owned"
+    "k8s.io/cluster-autoscaler/enabled"             = "true"
+    "k8s.io/cluster-autoscaler/${var.cluster-name}" = "owned"
   }
   scaling_config {
     desired_size = 1
